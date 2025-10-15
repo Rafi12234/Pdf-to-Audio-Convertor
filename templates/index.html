@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>PDF → Audio Reader</title>
+  <link rel="stylesheet" href="/static/styles.css"/>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>PDF → Audio Reader</h1>
+      <p class="sub">Upload a PDF, choose a voice, and listen instantly.</p>
+    </header>
+
+    <section class="card">
+      <div class="row">
+        <label class="label">Select PDF</label>
+        <input id="pdfFile" type="file" accept="application/pdf"/>
+      </div>
+
+      <div class="row">
+        <button id="uploadBtn" class="btn primary" disabled>Upload & Prepare</button>
+      </div>
+
+      <div id="prepStatus" class="status hidden"></div>
+    </section>
+
+    <section class="card">
+      <h2>Voice & Playback</h2>
+
+      <div class="row">
+        <label class="label">Quick pick</label>
+        <div class="toggle-group">
+          <input type="radio" id="genderAuto" name="gender" value="auto" checked>
+          <label for="genderAuto">Auto</label>
+          <input type="radio" id="genderFemale" name="gender" value="female">
+          <label for="genderFemale">Female</label>
+          <input type="radio" id="genderMale" name="gender" value="male">
+          <label for="genderMale">Male</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="label">Or choose specific voice</label>
+        <select id="voiceSelect"></select>
+        <button id="refreshVoices" class="btn">Refresh Voices</button>
+      </div>
+
+      <div class="row sliders">
+        <div>
+          <label>Rate <span id="rateVal">1.0</span></label>
+          <input id="rate" type="range" min="0.5" max="2" value="1" step="0.1">
+        </div>
+        <div>
+          <label>Pitch <span id="pitchVal">1.0</span></label>
+          <input id="pitch" type="range" min="0" max="2" value="1" step="0.1">
+        </div>
+        <div>
+          <label>Volume <span id="volumeVal">1.0</span></label>
+          <input id="volume" type="range" min="0" max="1" value="1" step="0.1">
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="playBtn" class="btn primary" disabled>▶ Play</button>
+        <button id="pauseBtn" class="btn" disabled>⏸ Pause</button>
+        <button id="resumeBtn" class="btn" disabled>⏯ Resume</button>
+        <button id="stopBtn" class="btn danger" disabled>⏹ Stop</button>
+      </div>
+
+      <div class="progress">
+        <div id="progressBar" class="bar"><span id="progressText">0%</span></div>
+      </div>
+
+      <div id="nowReading" class="now-reading hidden"></div>
+    </section>
+
+    <footer>
+      <p>Works offline using your browser’s voices (Chrome/Edge recommended). No audio leaves your device.</p>
+    </footer>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
